@@ -1,14 +1,27 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import PlanetHeader from '../components/planet-header';
 import Text from '../components/text/text';
+import { MercurySvg } from '../svg';
 import { colors } from '../theme/colors';
+import { spacing } from '../theme/spacing';
 
-const Details = ({planet}) => {
+const Details = ({route}) => {
+    const planet = route.params.planet;
+    const renderImg = (nane) =>{
+        switch(name){
+            case "mercury":
+                return <MercurySvg />
+        }
+    }
     return (
         <SafeAreaView style={styles.container}>
             <PlanetHeader backBtn="true" />
-            <Text>DCetails page</Text>
+            <ScrollView>
+                <View style={styles.imageView}>
+                     
+                </View>
+            </ScrollView>
         </SafeAreaView>  
     );
 };
@@ -20,4 +33,9 @@ const styles  = StyleSheet.create({
         flex:1, 
         backgroundColor: colors.black,
     },
+    imageView : {
+        padding: spacing[5],
+        alignItems: "center",
+        justifyContent: "center"
+    }
 });

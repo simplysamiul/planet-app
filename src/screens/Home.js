@@ -6,13 +6,12 @@ import { PLANET_LIST } from '../data/planet-list';
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-
-const Home = ({ navigation }) => {
+const Home = () => {
+    const navigation = useNavigation();
     const handelDetails = (item) =>{
         navigation.navigate("Details", {planet : item})
-        
-
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -20,16 +19,16 @@ const Home = ({ navigation }) => {
             <FlatList
                 contentContainerStyle={styles.list}
                 data={PLANET_LIST}
+                keyExtractor={((item)=> item.name)}
                 renderItem={({item}) =>{
-                    keyExtractor=((item)=> item.name)
                     return(
-                        <Pressable onPress={() => handelDetails(item)} style={styles.item}>
-                            <View style={{flexDirection: "row", alignItems:"center"}}>
-                            <View style={[styles.circle, {backgroundColor: item.color}]} />
-                            <Text preset='h4' style={styles.itemName}>{item.name}</Text>
-                            </View>
-                            <AntDesign name="right" size={18} color="white" />
-                        </Pressable>
+                    <Pressable onPress={() => handelDetails(item)} style={styles.item}>
+                        <View style={{flexDirection: "row", alignItems:"center"}}>
+                        <View style={[styles.circle, {backgroundColor: item.color}]} />
+                        <Text preset='h4' style={styles.itemName}>{item.name}</Text>
+                        </View>
+                        <AntDesign name="right" size={18} color="white" />
+                    </Pressable>
                     )
                 }}
                 ItemSeparatorComponent= {() => <View style={styles.separator} />}
