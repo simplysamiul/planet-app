@@ -19,7 +19,7 @@ const PlanetSection = ({title, value}) =>{
 
 
 
-export default function Details ({route}) {
+const Details = ({route}) => {
     const planet = route.params.planet;
     const {name, description, rotationTime, revolutionTime, radius, avgTemp, wikiLink} = planet;
     const renderImg = () =>{
@@ -74,6 +74,8 @@ export default function Details ({route}) {
         </SafeAreaView> 
     );
 };
+
+export default Details;
 
 const styles  = StyleSheet.create({
     container : {
